@@ -7,6 +7,10 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Poppins', sans-serif;
         background: #FBF9Fa;
     }
+
+    a {
+        text-decoration: none;
+    }
 `;
 
 export default GlobalStyle;

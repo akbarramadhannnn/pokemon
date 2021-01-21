@@ -6,3 +6,10 @@ export const GetDataPokemon = async (limit) => {
   );
   return result.data;
 };
+
+export const GetDetailPokemon = async (id) => {
+  const result = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon-species/${id}`
+  );
+  return result.data;
+};

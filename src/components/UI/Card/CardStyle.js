@@ -8,8 +8,10 @@ const Card = styled.div`
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 20px;
 
-  &:hover {
-    cursor: pointer;
+  a {
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 

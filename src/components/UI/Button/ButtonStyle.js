@@ -7,7 +7,7 @@ const Button = styled.button`
   outline: none;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  border-radius: 6px;
+  border-radius: 3px;
   border: 0;
 
   &:hover {

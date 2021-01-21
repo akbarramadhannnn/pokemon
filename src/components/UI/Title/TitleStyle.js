@@ -1,11 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Title = styled.h1`
   color: #2b2f3c;
-  font-size: 28px;
+  font-size: ${(props) => (props.fontSize ? `${props.fontSize}px` : '28px')};
   margin: 0;
-  padding: 15px 0px;
-  text-align: center;
+  padding: ${(props) =>
+    props.paddingTopBottom ? `${props.paddingTopBottom}px` : '0px'};
+  ${(props) =>
+    props.paddingRightLeft ? `${props.paddingRightLeft}px` : '0px'};
+  text-align: ${(props) => (props.align ? `${props.align}` : 'left')};
+  ${(props) =>
+    props.fontWeight &&
+    css`
+      font-weight: props.fontWeight;
+    `}
 `;
 
 export default Title;

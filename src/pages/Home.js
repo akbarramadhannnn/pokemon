@@ -1,15 +1,16 @@
-import { Fragment } from 'react';
 import loadable from '@loadable/component';
 import { LoadingCard } from 'components';
-const ListPokemon = loadable(() => import('containers/ListPokemon'), {
+import PokemonListProvider from 'context/PokemonListProvider';
+
+const PokemonList = loadable(() => import('containers/PokemonList'), {
   fallback: <LoadingCard />,
 });
 
 const Home = () => {
   return (
-    <Fragment>
-      <ListPokemon />
-    </Fragment>
+    <PokemonListProvider>
+      <PokemonList />
+    </PokemonListProvider>
   );
 };
 
