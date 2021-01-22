@@ -7,6 +7,7 @@ import Title from './UI/Title';
 import Button from './UI/Button';
 import LoadingCard from './UI/Loading/Card';
 import ProgressBar from './UI/ProgressBar';
+import Switch from './Switch';
 
 export {
   Container,
@@ -18,4 +19,5 @@ export {
   Flex,
   Col,
   ProgressBar,
+  Switch,
 };

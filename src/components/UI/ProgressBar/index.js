@@ -1,7 +1,15 @@
-import ProgressBar from './ProgressBarStyle';
+import ProgressBar, { Bar } from './ProgressBarStyle';
 
-const Index = ({ children }) => {
-  return <ProgressBar>{children}</ProgressBar>;
+const Index = ({ children, value }) => {
+  if(value > 100) {
+    value = 100
+  }
+  
+  return (
+    <ProgressBar>
+      <Bar value={value}>{children}</Bar>
+    </ProgressBar>
+  );
 };
 
 export default Index;

@@ -28,7 +28,7 @@ const ListPokemon = () => {
             paddingLeft={20}
           >
             <p>
-              Show : {limit} of {countPokemon}
+              Showing : {limit} of {countPokemon}
             </p>
             <Grid>
               {dataPokemon.map((d, i) => {
@@ -49,7 +49,9 @@ const ListPokemon = () => {
                           height="120px"
                         />
                       </div>
-                      <Title paddingTopBottom={15} align="center">{d.name}</Title>
+                      <Title paddingTop={15} paddingBottom={15} align="center">
+                        {d.name}
+                      </Title>
                     </Link>
                   </Card>
                 );

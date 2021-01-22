@@ -13,3 +13,8 @@ export const GetDetailPokemon = async (id) => {
   );
   return result.data;
 };
+
+export const GetInfoPokemon = async (id) => {
+  const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  return result.data;
+};

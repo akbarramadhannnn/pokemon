@@ -4,17 +4,23 @@ const Index = ({
   children,
   fontSize,
   fontWeight,
-  paddingTopBottom,
-  paddingRightLeft,
-  align
+  paddingTop,
+  paddingRight,
+  paddingBottom,
+  paddingLeft,
+  align,
+  color,
 }) => {
   return (
     <Title
       fontSize={fontSize}
       fontWeight={fontWeight}
-      paddingTopBottom={paddingTopBottom}
-      paddingRightLeft={paddingRightLeft}
+      paddingTop={paddingTop}
+      paddingRight={paddingRight}
+      paddingBottom={paddingBottom}
+      paddingLeft={paddingLeft}
       align={align}
+      color={color}
     >
       {children}
     </Title>
