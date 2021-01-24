@@ -1,6 +1,6 @@
 import { Fragment, useContext } from 'react';
 import { PokemonListContext } from 'context/PokemonListProvider';
-import { Container, Grid, Card, Title, Button, LoadingCard } from 'components';
+import { Container, Grid, Card, Title, Button, LoadingList } from 'components';
 import { Link } from 'react-router-dom';
 import LoadingCircle from 'assets/icon/loading-circle.svg';
 
@@ -18,7 +18,7 @@ const ListPokemon = () => {
   return (
     <Fragment>
       {loadingDataPokemon ? (
-        <LoadingCard />
+        <LoadingList />
       ) : (
         <Fragment>
           <Container

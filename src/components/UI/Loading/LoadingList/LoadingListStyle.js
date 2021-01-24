@@ -8,10 +8,6 @@ const Card = styled.div`
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 20px;
 
-  &:hover {
-    cursor: pointer;
-  }
-
   .shine {
     background: #f6f7f8;
     background-image: linear-gradient(
@@ -44,6 +40,16 @@ const Card = styled.div`
     height: 20px;
     margin: 15px 150px 70px 70px;
     border-radius: 6px;
+  }
+
+  @keyframes placeholderShimmer {
+    0% {
+      background-position: -468px 0;
+    }
+
+    100% {
+      background-position: 850px 0;
+    }
   }
 `;
 

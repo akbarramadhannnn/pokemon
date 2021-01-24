@@ -1,4 +1,4 @@
-import Card from './LoadingCardStyle';
+import Card from './LoadingListStyle';
 import { Grid, Container } from 'components';
 
 const Index = () => {

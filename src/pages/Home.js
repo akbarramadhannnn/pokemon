@@ -1,9 +1,9 @@
 import loadable from '@loadable/component';
-import { LoadingCard } from 'components';
+import { LoadingList } from 'components';
 import PokemonListProvider from 'context/PokemonListProvider';
 
 const PokemonList = loadable(() => import('containers/PokemonList'), {
-  fallback: <LoadingCard />,
+  fallback: <LoadingList />,
 });
 
 const Home = () => {

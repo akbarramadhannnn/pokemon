@@ -1,109 +1,116 @@
 import { Fragment, useContext } from 'react';
 import { PokemonDetailContext } from 'context/PokemonDetailProvider';
-import { Context } from 'context';
 import {
-  Container,
   Card,
-  Flex,
-  Col,
   Title,
-  ProgressBar,
   Button,
+  LoadingDetail,
+  Modal,
+  Input,
+  Label,
 } from 'components';
+import WrapperPokemonDetail, {
+  Container,
+  WrapperContent,
+  ImageArea,
+  InfoArea,
+  InfoAreaTop,
+  InfoAreaBottom,
+  TitleArea,
+  ProgressBar,
+} from './PokemonDetailStyle';
+import { Link } from 'react-router-dom';
 
 const PokemonDetail = () => {
-  const { detailPokemon, loadingData } = useContext(PokemonDetailContext);
-  const { setMyPokemonList } = useContext(Context);
-
-  const catchPokemon = (data) => {
-    setMyPokemonList((state) => {
-      const filterMyListPokemon = state.filter((m) => m.id === data.id);
-      if (!filterMyListPokemon.length > 0) {
-        state = [...state, data];
-      } else {
-        console.log('list sudah tersedia')
-      }
-      return state;
-    });
-  };
+  const {
+    detailPokemon,
+    loadingData,
+    submitPokemon,
+    showModal,
+    onCloseModal,
+    catchPokemon,
+    onChangePokemon,
+    pokemonName,
+    disabledSubmit,
+    error,
+  } = useContext(PokemonDetailContext);
 
   return (
     <Fragment>
       {loadingData ? (
-        <h2>Loading Data</h2>
+        <LoadingDetail />
       ) : (
-        <Container
-          paddingTop={30}
-          paddingRight={30}
-          paddingBottom={30}
-          paddingLeft={30}
-        >
-          <Card>
-            <Container
-              paddingTop={50}
-              paddingRight={50}
-              paddingBottom={50}
-              paddingLeft={50}
+        <WrapperPokemonDetail>
+          {showModal && (
+            <Modal
+              onClose={onCloseModal}
+              onSubmit={submitPokemon}
+              disabledSubmit={disabledSubmit}
             >
-              <Flex>
-                <Col marginRight={40}>
-                  {detailPokemon.image && (
-                    <img
-                      src={detailPokemon.image}
-                      width="300px"
-                      height="300px"
-                      alt="Gambar"
-                    />
-                  )}
-                </Col>
+              <Label text="Pokemon Name" />
+              <Input onChange={onChangePokemon} value={pokemonName} />
+              <p style={{ color: 'red', fontWeight: 'bold', margin: 0 }}>
+                {error}
+              </p>
+            </Modal>
+          )}
 
-                <Col>
-                  <Title fontSize={42} fontWeight={700} paddingBottom={10}>
-                    {detailPokemon.name}
-                  </Title>
-                  <Flex>
-                    <Col marginRight={40}>
-                      <Title fontSize={24}>HP</Title>
-                      <Title fontSize={24}>Attack</Title>
-                      <Title fontSize={24}>Defense</Title>
-                      <Title fontSize={24}>Speed</Title>
-                      <Title fontSize={24}>Special Attack</Title>
-                      <Title fontSize={24}>Special Defense</Title>
-                    </Col>
-                    <Col>
-                      {detailPokemon.rate.map((r, i) => {
-                        return (
-                          <ProgressBar value={r.base_stat} key={i}>
-                            <Title fontSize={15} color="#ffffff">
-                              {r.base_stat > 100 ? 100 : r.base_stat}%
-                            </Title>
-                          </ProgressBar>
-                        );
-                      })}
-                    </Col>
-                  </Flex>
-                </Col>
-              </Flex>
+          <div style={{ marginBottom: '20px' }}>
+            <Link to="/" style={{ color: '#00ace6' }}>
+              Back
+            </Link>
+          </div>
 
-              <div
-                style={{
-                  height: '50px',
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    float: 'right',
-                  }}
-                >
-                  <Button onClick={() => catchPokemon(detailPokemon)}>
-                    CATCH
-                  </Button>
-                </div>
+          <Card>
+            <Container>
+              <WrapperContent>
+                <ImageArea>
+                  <img src={detailPokemon.image} alt="Gambar" />
+                </ImageArea>
+                <InfoArea>
+                  <InfoAreaTop>
+                    <Title fontSize={42} fontWeight={700} paddingBottom={10}>
+                      {detailPokemon.name}
+                    </Title>
+                  </InfoAreaTop>
+
+                  {detailPokemon.rate.map((r, i) => {
+                    let name = r.stat.name;
+                    if (name === 'special-attack') {
+                      name = 'special attack';
+                    }
+
+                    if (name === 'special-defense') {
+                      name = 'special defense';
+                    }
+                    return (
+                      <InfoAreaBottom key={i}>
+                        <TitleArea>
+                          <Title fontSize={20}>{name}</Title>
+                        </TitleArea>
+                        <ProgressBar
+                          value={r.base_stat > 100 ? 100 : r.base_stat}
+                        >
+                          <div className="bar">
+                            {r.base_stat > 100 ? 100 : r.base_stat}%
+                          </div>
+                        </ProgressBar>
+                      </InfoAreaBottom>
+                    );
+                  })}
+                </InfoArea>
+              </WrapperContent>
+            </Container>
+
+            <Container>
+              <div style={{ textAlign: 'right' }}>
+                <Button onClick={() => catchPokemon(detailPokemon)}>
+                  CATCH
+                </Button>
               </div>
             </Container>
           </Card>
-        </Container>
+        </WrapperPokemonDetail>
       )}
     </Fragment>
   );
