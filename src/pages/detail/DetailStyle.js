@@ -17,6 +17,13 @@ const Content = styled.div`
   height: 100%;
   width: 100%;
 
+  @media (min-width: 768px) and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
