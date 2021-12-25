@@ -4,6 +4,7 @@ const Container = styled.div`
   background: #fff;
   border-radius: 10px;
   padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 3px;
 `;
 
 const Content = styled.div`
@@ -84,6 +85,7 @@ const WrapButton = styled.div`
   @media screen and (max-width: 768px) {
     text-align: center;
     display: flex;
+    justify-content: space-between;
   }
 `;
 
